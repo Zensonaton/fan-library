@@ -1,0 +1,66 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bun run dev",
+			"type": "shell",
+			"command": "bun run dev",
+			"isBackground": true,
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/frontend"
+			},
+			"problemMatcher": [
+				{
+					"owner": "typescript",
+					"source": "Typescript",
+					"fileLocation": "absolute",
+					"applyTo": "allDocuments",
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": "VITE",
+						"endsPattern": "ready in (\\d*) ms"
+					},
+					"pattern": [
+						{
+							"regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
+							"severity": 1,
+							"message": 2
+						},
+						{
+							"regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+							"file": 1,
+							"line": 2,
+							"column": 3
+						}
+					]
+				},
+				{
+					"owner": "eslint",
+					"source": "ESLint",
+					"fileLocation": "absolute",
+					"applyTo": "allDocuments",
+					"background": {
+						"activeOnStart": true
+					},
+					"pattern": [
+						{
+							"regexp": "^ (ERROR|WARNING)\\(ESLint\\)  (.*)$",
+							"severity": 1,
+							"message": 2
+						},
+						{
+							"regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+							"file": 1,
+							"line": 2,
+							"column": 3
+						}
+					]
+				}
+			]
+		}
+	]
+}
